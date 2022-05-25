@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import numpy as np
 import datetime
+from pathlib import Path
 from collections import defaultdict
 from felix.src.algorithms.listnet import ListNet
 from felix.src.candidate_creator.ranking_candidates_loader import RankingCandidatesLoader
@@ -334,6 +335,7 @@ def run_experiment(
 
 def table_final_results(results, file_name=None, raw_data_file_name=None):
     result_df = {}
+    Path(result_path).mkdir(parents=True, exist_ok=True)
     if raw_data_file_name:
         a_file = open(result_path + raw_data_file_name, "wb")
         pickle.dump(results, a_file)

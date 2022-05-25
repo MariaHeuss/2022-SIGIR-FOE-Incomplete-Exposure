@@ -1,5 +1,6 @@
 ### Simulated experiments
 import os
+from pathlib import Path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -78,7 +79,6 @@ def get_mocked_candidates_per_query_per_fold(
 def candidate_set_size_experiment(
     num_queries,
     num_candidates_list,
-    outlier_threshold=2.5,
     file_name="candidate_set_size",
 ):
     experiment_results = {}
@@ -129,7 +129,6 @@ def candidate_set_size_experiment(
                 max_num_items=None,
                 upsample=False,
                 mrp_matrices=mrp_matrices,
-                outlier_threshold=outlier_threshold,
                 normalize_scores=False,
             )
         table_final_results(
@@ -198,6 +197,7 @@ def number_of_resample_experiment(
 
 
 def plot_candidate_set_experiment_results(path_to_csv, candidate_list):
+    Path(figure_path).mkdir(parents=True, exist_ok=True)
     # Read the csv with the results and format the dataframe
     results = pd.read_csv(os.path.join(result_path, path_to_csv))
     results = results.T
@@ -263,6 +263,7 @@ def plot_candidate_set_experiment_results(path_to_csv, candidate_list):
 
 
 def plot_number_of_resamples_experiment_results(path_to_csv, number_of_resamples):
+    Path(figure_path).mkdir(parents=True, exist_ok=True)
     number_of_resamples = [r + 1 for r in number_of_resamples]
     # Read the csv with the results and format the dataframe
     results = pd.read_csv(os.path.join(result_path, path_to_csv))

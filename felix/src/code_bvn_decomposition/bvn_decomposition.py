@@ -221,15 +221,6 @@ def birkhoff_von_neumann_decomposition(
     if re_search_outliers > 0 and outlier_permutations:
         # We aggregate the outlier matrices.
         outliers = [q * P for q, P in zip(outlier_coefficients, outlier_permutations)]
-        print(
-            "amount of lists wih outliers len(outliers):",
-            len(outliers),
-            "without_outliers: ",
-            len(coefficients),
-            "remaining_weight: ",
-            sum(outlier_coefficients),
-            sum(coefficients),
-        )
         outliers_sum = reduce(lambda x, y: x + y, outliers)
         # Since our algorithm does not actually sample randomly but in order
         # we permute the rows of the matrix to get a different decomposition
